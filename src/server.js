@@ -2,6 +2,7 @@ import express from 'express' // esm syntax
 import path, { dirname } from 'path' // enable js server.js to look look & send html files
 import { fileURLToPath } from 'url'
 import authRoutes from './routes/authRoutes.js'
+import todoRoutes from './routes/todoRoutes.js' // import name doesn't have to match export name todoRoutes != router
 
 const app = express()
 const PORT =  process.env.PORT || 5003 // check if PORT env variable or default to 5003
@@ -24,6 +25,7 @@ app.get('/', (req, res) => {
 
 // Routes
 app.use('/auth', authRoutes) // tell app to use authRoutes when we hit endpoints that contain /auth
+app.use('/todos', todoRoutes)
 
 app.listen(PORT, () => {
     console.log(`Server has started on port: ${PORT}`)
