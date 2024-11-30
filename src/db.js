@@ -4,7 +4,7 @@ const db = new DatabaseSync(':memory:') //Tells Sqlite to create database in mem
 
 // Execute SQL statements from strings
 db.exec(`
-    CREATE TABLE user (
+    CREATE TABLE users (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
         username TEXT UNIQUE,
         password TEXT
