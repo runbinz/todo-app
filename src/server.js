@@ -3,9 +3,10 @@ import path, { dirname } from 'path' // enable js server.js to look look & send 
 import { fileURLToPath } from 'url'
 import authRoutes from './routes/authRoutes.js'
 import todoRoutes from './routes/todoRoutes.js' // import name doesn't have to match export name todoRoutes != router
+import authMiddleware from './middlware/authMiddleware.js'
 
 const app = express()
-const PORT =  process.env.PORT || 5003 // check if PORT env variable or default to 5003
+const PORT =  process.env.PORT || 5056 // check if PORT env variable or default to 5003
 
 // Get the file path from the URL of the current module
 const __filename = fileURLToPath(import.meta.url)
@@ -25,7 +26,7 @@ app.get('/', (req, res) => {
 
 // Routes
 app.use('/auth', authRoutes) // tell app to use authRoutes when we hit endpoints that contain /auth
-app.use('/todos', todoRoutes)
+app.use('/todos', authMiddleware, todoRoutes)
 
 app.listen(PORT, () => {
     console.log(`Server has started on port: ${PORT}`)
