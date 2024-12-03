@@ -6,7 +6,7 @@ import todoRoutes from './routes/todoRoutes.js' // import name doesn't have to m
 import authMiddleware from './middleware/authMiddleware.js'
 
 const app = express()
-const PORT =  process.env.PORT || 5056 // check if PORT env variable or default to 5003
+const PORT =  process.env.PORT || 5003 // check if PORT env variable or default to 5003
 
 // Get the file path from the URL of the current module
 const __filename = fileURLToPath(import.meta.url)
