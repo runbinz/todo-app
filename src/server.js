@@ -3,7 +3,7 @@ import path, { dirname } from 'path' // enable js server.js to look look & send 
 import { fileURLToPath } from 'url'
 import authRoutes from './routes/authRoutes.js'
 import todoRoutes from './routes/todoRoutes.js' // import name doesn't have to match export name todoRoutes != router
-import authMiddleware from './middlware/authMiddleware.js'
+import authMiddleware from './middleware/authMiddleware.js'
 
 const app = express()
 const PORT =  process.env.PORT || 5056 // check if PORT env variable or default to 5003
