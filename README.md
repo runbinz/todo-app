@@ -1,2 +1,2 @@
-# todo
-Creating a full stack todo application
+# Todo
+Creating a full stack todo application.
