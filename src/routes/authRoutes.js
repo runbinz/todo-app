@@ -6,11 +6,12 @@ import db from '../db.js'
 
 const router = express.Router()
 
-router.post('/register', (req, res) => { // defines route for handling user registration
+// Register a new user endpoing /auth/register
+router.post('/register', (req, res) => {
     const { username, password } = req.body
     // save the username and an irreversibly encrypted password
-    // save bob@gmail.com | dsihfosjufpdo...dshfosdf
-    
+    // save gilgamesh@gmail.com | aklsdjfasdf.asdf..qwe..q.we...qwe.qw.easd
+
     // encrypt the password
     const hashedPassword = bcrypt.hashSync(password, 8)
 
@@ -33,7 +34,7 @@ router.post('/register', (req, res) => { // defines route for handling user regi
     }
 })
 
-router.post('/login', (req, res) => { // defines route for handling user login
+router.post('/login', (req, res) => {
     // we get their email, and we look up the password associated with that email in the database
     // but we get it back and see it's encrypted, which means that we cannot compare it to the one the user just used trying to login
     // so what we can to do, is again, one way encrypt the password the user just entered
@@ -59,6 +60,8 @@ router.post('/login', (req, res) => { // defines route for handling user login
         console.log(err.message)
         res.sendStatus(503)
     }
+
 })
+
 
 export default router
