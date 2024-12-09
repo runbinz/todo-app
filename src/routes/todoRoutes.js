@@ -49,7 +49,7 @@ router.delete('/:id', async (req, res) => {
     const { id } = req.params
     const userId = req.userId
     
-    const deletedTodo = await prisma.todo.delete({
+    await prisma.todo.delete({
         where: {
             id: parseInt(id),
             userId
