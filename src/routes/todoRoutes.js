@@ -3,21 +3,23 @@ import prisma from '../prismaClient.js'
 
 const router = express.Router()
 
-// Get all todos for logged in user
+// Get all todos for logged-in user
 router.get('/', async (req, res) => {
     const todos = await prisma.todo.findMany({
         where: {
             userId: req.userId
         }
     })
+
     res.json(todos)
 })
 
 // Create a new todo
 router.post('/', async (req, res) => {
     const { task } = req.body
+
     const todo = await prisma.todo.create({
-        data:{
+        data: {
             task,
             userId: req.userId
         }
@@ -27,7 +29,7 @@ router.post('/', async (req, res) => {
 })
 
 // Update a todo
-router.put('/:id', async (req, res) => { // dynamic id allows us to identity which todo for modifications
+router.put('/:id', async (req, res) => {
     const { completed } = req.body
     const { id } = req.params
 
@@ -37,10 +39,9 @@ router.put('/:id', async (req, res) => { // dynamic id allows us to identity whi
             userId: req.userId
         },
         data: {
-            completed: !!completed //convert to bool
+            completed: !!completed
         }
     })
-
     res.json(updatedTodo)
 })
 
@@ -48,14 +49,13 @@ router.put('/:id', async (req, res) => { // dynamic id allows us to identity whi
 router.delete('/:id', async (req, res) => {
     const { id } = req.params
     const userId = req.userId
-    
     await prisma.todo.delete({
         where: {
             id: parseInt(id),
             userId
         }
     })
-    
+
     res.send({ message: "Todo deleted" })
 })
 

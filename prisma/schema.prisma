@@ -15,8 +15,8 @@ datasource db {
 
 // Create two models, basically templates
 model User {
-  id        Int     @id @default(autoincrement())
-  username  String  @unique
+  id        Int       @id @default(autoincrement())
+  username  String    @unique
   password  String
   todos     Todo[]
 }
