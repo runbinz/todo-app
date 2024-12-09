@@ -1,12 +1,11 @@
 # Setup for conglomerate of docker files / individual containers
-version: '3'
 services:
-  app: 
+  app:
     build: .
     container_name: todo-app
     environment:
       - DATABASE_URL=postgresql://postgres:postgres@db:5432/todoapp
-      - JWT_SECRET=bob123
+      - JWT_SECRET=your_jwt_secret_here
       - NODE_ENV=development
       - PORT=5003
     ports:
@@ -20,7 +19,7 @@ services:
     image: postgres:13-alpine
     container_name: postgres-db
     environment:
-      POSTGRE_USER: postgres
+      POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
       POSTGRES_DB: todoapp
     ports:
